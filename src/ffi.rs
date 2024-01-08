@@ -1,4 +1,5 @@
 #![allow(non_camel_case_types)]
+#![allow(dead_code)]
 
 pub enum Struct__fluid_hashtable_t { }
 pub type fluid_settings_t = Struct__fluid_hashtable_t;
@@ -264,8 +265,9 @@ extern "C" {
                                  name: *const ::libc::c_char,
                                  val: *mut ::libc::c_double) -> ::libc::c_int;
     pub fn fluid_settings_getnum_default(settings: *mut fluid_settings_t,
-                                         name: *const ::libc::c_char)
-     -> ::libc::c_double;
+                                         name: *const ::libc::c_char,
+                                         val: *mut ::libc::c_double)
+     -> ::libc::c_int;
     pub fn fluid_settings_getnum_range(settings: *mut fluid_settings_t,
                                        name: *const ::libc::c_char,
                                        min: *mut ::libc::c_double,
@@ -277,7 +279,8 @@ extern "C" {
                                  name: *const ::libc::c_char,
                                  val: *mut ::libc::c_int) -> ::libc::c_int;
     pub fn fluid_settings_getint_default(settings: *mut fluid_settings_t,
-                                         name: *const ::libc::c_char)
+                                         name: *const ::libc::c_char,
+                                         val: *mut ::libc::c_int)
      -> ::libc::c_int;
     pub fn fluid_settings_getint_range(settings: *mut fluid_settings_t,
                                        name: *const ::libc::c_char,

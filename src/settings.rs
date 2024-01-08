@@ -122,20 +122,21 @@ impl Settings {
             let res = fluid_settings_getnum(self.to_raw(), name_str.as_ptr(), &mut value);
 
             match res {
-                1 => Some(value),
+                0 => Some(value),
                 _ => None
             }
         }
     }
 
     pub fn getnum_default(&self, name: &str) -> Option<f64> {
+        let mut value: f64 = 0.0;
         let name_str = CString::new(name).unwrap();
         unsafe {
-            let res: f64 = fluid_settings_getnum_default(self.to_raw(), name_str.as_ptr());
+            let res = fluid_settings_getnum_default(self.to_raw(), name_str.as_ptr(), &mut value);
 
             match res {
-                0.0 => None,
-                _ => Some(res)
+                0 => Some(value),
+                _ => None
             }
         }
     }
@@ -170,20 +171,21 @@ impl Settings {
             let res = fluid_settings_getint(self.to_raw(), name_str.as_ptr(), &mut value);
 
             match res {
-                1 => Some(value),
+                0 => Some(value),
                 _ => None
             }
         }
     }
 
     pub fn getint_default(&self, name: &str) -> Option<i32> {
+        let mut value: i32 = 0;
         let name_str = CString::new(name).unwrap();
         unsafe {
-            let res: i32 = fluid_settings_getint_default(self.to_raw(), name_str.as_ptr());
+            let res: i32 = fluid_settings_getint_default(self.to_raw(), name_str.as_ptr(), &mut value);
 
             match res {
-                0 => None,
-                _ => Some(res)
+                0 => Some(value),
+                _ => None
             }
         }
     }
